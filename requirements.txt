@@ -1,9 +1,9 @@
 beautifulsoup4>=4.12.2
 colorama==0.4.6
 distro==1.8.0
-openai==0.27.2
+openai==0.27.8
 playsound==1.2.2
-python-dotenv==1.0.0
+python-dotenv==0.21
 pyyaml==6.0
 PyPDF2
 python-docx
@@ -19,6 +19,7 @@ google-api-python-client #(https://developers.google.com/custom-search/v1/overvi
 pinecone-client==2.2.1
 redis
 orjson==3.8.10
+ftfy>=6.1.1
 Pillow
 selenium==4.1.4
 webdriver-manager
@@ -27,6 +28,15 @@ click
 charset-normalizer>=3.1.0
 spacy>=3.0.0,<4.0.0
 en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.5.0/en_core_web_sm-3.5.0-py3-none-any.whl
+prompt_toolkit>=3.0.38
+pydantic
+inflection
+agbenchmark
+agent-protocol>=0.1.1
+
+# web server
+fastapi
+uvicorn
 
 ##Dev
 coverage
@@ -38,6 +48,8 @@ isort
 gitpython==3.1.31
 auto-gpt-plugin-template @ git+https://github.com/Significant-Gravitas/Auto-GPT-Plugin-Template@0.1.0
 mkdocs
+mkdocs-material
+mkdocs-table-reader-plugin
 pymdown-extensions
 mypy
 types-Markdown
