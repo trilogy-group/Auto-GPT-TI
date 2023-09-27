@@ -1,4 +1,4 @@
-name: Benchmarks
+name: Benchmarks (legacy)
 
 on:
   schedule:
@@ -39,17 +39,17 @@ jobs:
       - name: Set up Python dependency cache
         uses: actions/cache@v3
         with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}-${{ steps.get_date.outputs.date }}
+          path: ~/.cache/pypoetry
+          key: ${{ runner.os }}-poetry-${{ hashFiles('autogpts/autogpt/pyproject.toml') }}-${{ steps.get_date.outputs.date }}
 
       - name: Install Python dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          curl -sSL https://install.python-poetry.org | python3 -
+          poetry install
 
       - name: Run pytest with coverage
         run: |
-          rm -rf tests/Auto-GPT-test-cassettes
+          rm -rf tests/vcr_cassettes
           pytest -n auto --record-mode=all ${{ matrix.config.task }}
         env:
           CI: true
@@ -70,4 +70,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: cassettes-${{ matrix.config.task-name }}
-          path: tests/Auto-GPT-test-cassettes/
+          path: tests/vcr_cassettes/
